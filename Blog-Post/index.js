@@ -40,14 +40,19 @@ app.post("/delete" , (req,res)=>{
 })
 
 app.post("/update" , (req,res)=>{
-    let tempObj = data.filter((item)=>item.id===parseInt(req.body.postId))
-    data = data.filter((item)=>item.id!=  parseInt(req.body.postId));
-    tempObj = tempObj[0];
+    let tempObj = []
+    tempObj = data.filter((item)=>item.id===parseInt(req.body.updateId))
+    data = data.filter((item)=>item.id!=  parseInt(req.body.updateId));
+    let t = tempObj[0].title;
+    let c = tempObj[0].content;
     console.log(tempObj);
+    
     res.render("index.ejs" , {
-        updateData1  : tempObj["title"] ,
-        updateData2 : tempObj["content"],
+        data : data,
+        updateData1  : t ,
+        updateData2 : c,
     })
+    
 })
 
 

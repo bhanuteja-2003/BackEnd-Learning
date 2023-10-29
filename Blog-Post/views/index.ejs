@@ -8,9 +8,16 @@
 <body>
     <form action="/submit" method="post"> 
         <label for="title">Title</label>
-        <input  type="text" id="title" name="title" >
+       <% if(locals.updateData1 && locals.updateData2){ %>
+        <input  type="text" id="title" name="title"  value=<%= updateData1  %>>
+        <label for="content">Content</label>
+        <input  type="text" id="content" name="content"  value=<%= updateData2  %>>
+       <% } else{%>
+        <input  type="text" id="title" name="title">
         <label for="content">Content</label>
         <input  type="text" id="content" name="content">
+        <%}%>
+        
         <input type="submit" value="submit">
     </form>
     <% if(locals.data){ %>
@@ -23,10 +30,10 @@
                 <input type="hidden" name="postId" value=<%=  data[i].id  %>>
                 <button type="submit">delete</button>
             </form>
-            <!-- <form action="/update" method="post">
-                <input type="hidden" name="postId" value=<%=  data[i].id  %>>
+            <form action="/update" method="post">
+                <input type="hidden" name="updateId" value=<%=  data[i].id  %>>
                 <button type="submit">update</button>
-            </form> -->
+            </form>
             
             
         </div>
